@@ -1,1 +1,3 @@
-# curriculum-redefined
+# Curriculum Redefined
+
+In the age of Industry 4.0, computer science education faces new challenges in adapting to emerging technologies like AI, IoT, Blockchain, and Data Sciences. This project evaluates existing curricula in AI&ML, Data Sciences, and Cyber Security programs, assessing their alignment with industry demands. We explore institutions, courses, student outcomes, and curriculum impact, gathering input from alumni, recruiters, and students. Our goal is to bridge curriculum gaps and empower educational institutions to better prepare students for the tech-driven job market, offering practical recommendations for improvement.
