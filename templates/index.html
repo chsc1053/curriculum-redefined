@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Curriculum Redefined</title>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='indexStyle.css') }}">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='background.jpg') }}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    #chart-container {
+      width: 75%;
+    }
+
+    #percentage-average {
+      margin: 10px;
+    }
+
+    .data-container {
+      display: flex;
+      height: 100%;
+    }
+
+    .data-left,
+    .data-right {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .heading2 {
+      margin-top: 0;
+    }
+
+    .vertical-line {
+      width: 1px;
+      background-color: black;
+    }
+
+    .horizontal-line {
+      border: none;
+      border-top: 1px solid black;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <center>
+      <h1>Curriculum Redefined</h1>
+    </center>
+  </div>
+
+  <!-- 1. User input -->
+  <div id="section1" class="section">
+    <center>
+      <h2 style="margin:10px;">Enter Curriculum Details:</h2>
+    </center>
+    <form>
+      <div id="dataContainer">
+        <!-- Data sections will be added dynamically here -->
+      </div>
+      <button id="addButton" type="button" style="background-color:#008CBA;">Add</button>
+      <button id="submitButton" type="submit" style="background-color:#5CB85C">Submit</button>
+    </form>
+  </div>
+
+  <!-- 2. Charts -->
+  <div id="section2" style="visibility: collapse;">
+    <center>
+      <h2 style="margin:10px;">Graphical Representations</h2>
+      <div id="chart-container">
+        <canvas id="bar-chart"></canvas>
+      </div>
+      <h3 id="percentage-average"></h3>
+    </center>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  </div>
+
+  <!-- 3. Curriculum changes -->
+  <div id="section3" class="section" style="visibility: collapse;">
+    <center>
+      <h2 style="margin:10px;">Curriculum Improvement</h2>
+    </center>
+    <div class="data-container">
+      <div class="data-left" id="old-curriculum">
+        <center>
+          <h3 class="heading2">User-entered curriculum</h3>
+        </center>
+        <hr class="horizontal-line">
+      </div>
+      <div class="vertical-line"></div>
+      <div class="data-right" id="new-curriculum">
+        <center>
+          <h3 class="heading2">Modified curriculum</h3>
+        </center>
+        <hr class="horizontal-line">
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Importance of suggested changes -->
+  <div id="section4" class="section" style="visibility: collapse;">
+
+  </div>
+
+  <script src="{{ url_for('static', filename='indexScript.js') }}"></script>
+</body>
+
+</html>
