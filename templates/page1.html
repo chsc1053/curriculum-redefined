@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Curriculum Redefined</title>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='page1_style.css') }}">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='background.jpg') }}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    #chart-container {
+      width: 75%;
+    }
+
+    #percentage-average {
+      margin: 10px;
+    }
+
+    .data-container {
+      display: flex;
+      height: 100%;
+    }
+
+    .data-left,
+    .data-right {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .heading2 {
+      margin-top: 0;
+    }
+
+    .vertical-line {
+      width: 1px;
+      background-color: black;
+    }
+
+    .horizontal-line {
+      border: none;
+      border-top: 1px solid black;
+      width: 100%;
+    }
+
+    /* CSS styles for the loading animation dialog box */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loading-spinner {
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #3498db;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <center>
+      <h1>Curriculum Redefined</h1>
+    </center>
+  </div>
+
+  <!-- 1. User input -->
+  <div id="section1" class="section">
+    <center>
+      <h2 style="margin:10px;">Enter Standards for which the Curriculum needs to be Evaluated:</h2>
+    </center>
+    <form>
+      <div id="dataContainer">
+        <!-- Data sections will be added dynamically here -->
+      </div>
+      <button id="addButton" type="button" style="background-color:#008CBA;">Add</button>
+      <button id="submitButton" type="submit" style="background-color:#5CB85C">Submit</button>
+    </form>
+  </div>
+
+  <!-- 2. Keywords -->
+  <!-- <div id="section2" class="section" style="visibility: collapse;">
+    <center>
+      <h2 style="margin:10px;">Extracted Keywords</h2>
+      <p id="keywords"></p>
+    </center>
+  </div> -->
+
+  <!-- 3. Clusters -->
+  <!-- <div id="section3" class="section" style="visibility: collapse;">
+    <center>
+      <h2 style="margin:10px;">Keyword Clusters</h2>
+      <p id="clusters"></p>
+    </center>
+  </div> -->
+
+  <!-- 4. Redirection -->
+  <div id="section4" class="section" style="visibility: collapse;">
+    <center>
+      <form action="/page2" method="get">
+        <button id="redirectButton" type="submit" style="background-color:#5CB85C">Continue</button>
+      </form>
+    </center>
+  </div>
+
+  <!-- Loading animation dialog box -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='page1_script.js') }}"></script>
+</body>
+
+</html>

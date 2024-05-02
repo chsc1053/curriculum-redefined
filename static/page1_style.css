@@ -1,0 +1,64 @@
+/* Style for the section container */
+.section {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+button {
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin-bottom: 3px;
+  margin-top: -6px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Style for the 'data' sections */
+.data-section {
+  margin: 10px 0;
+  padding: 10px;
+  /* border: 1px solid #ddd; */
+  border-radius: 5px;
+  background-color: #a29e9e;
+}
+
+/* Style for the 'remove' button */
+.remove-button {
+  float: right;
+  background-color: #f44336;
+}
+
+/* Style for the 'title' and 'syllabus' inputs */
+.input-label {
+  display: block;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+/* Style for the text input */
+.input-text {
+  width: 98.7%;
+  padding: 5px;
+  margin-right: 50px;
+  margin-bottom: 2px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for the text area input */
+.input-textarea {
+  width: 98.7%;
+  padding: 5px;
+  margin-top: 4px;
+  margin-right: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

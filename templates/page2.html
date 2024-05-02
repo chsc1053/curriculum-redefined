@@ -7,7 +7,7 @@
 
   <title>Curriculum Redefined</title>
 
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='indexStyle.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='page2_style.css') }}">
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -52,6 +52,39 @@
       border-top: 1px solid black;
       width: 100%;
     }
+
+    /* CSS styles for the loading animation dialog box */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loading-spinner {
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #3498db;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
 
@@ -79,10 +112,10 @@
   <!-- 2. Charts -->
   <div id="section2" style="visibility: collapse;">
     <center>
-      <h2 style="margin:10px;">Graphical Representations</h2>
-      <div id="chart-container">
+      <h2 style="margin:10px;">Percentages</h2>
+      <!-- <div id="chart-container">
         <canvas id="bar-chart"></canvas>
-      </div>
+      </div> -->
       <h3 id="percentage-average"></h3>
     </center>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -99,6 +132,9 @@
           <h3 class="heading2">User-entered curriculum</h3>
         </center>
         <hr class="horizontal-line">
+        <div id="old-curriculum-data">
+          <!-- Old curriculum data will be added dynamically here -->
+        </div>
       </div>
       <div class="vertical-line"></div>
       <div class="data-right" id="new-curriculum">
@@ -106,6 +142,9 @@
           <h3 class="heading2">Modified curriculum</h3>
         </center>
         <hr class="horizontal-line">
+        <div id="new-curriculum-data">
+          <!-- New curriculum data will be added dynamically here -->
+        </div>
       </div>
     </div>
   </div>
@@ -115,7 +154,12 @@
 
   </div>
 
-  <script src="{{ url_for('static', filename='indexScript.js') }}"></script>
+  <!-- Loading animation dialog box -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='page2_script.js') }}"></script>
 </body>
 
 </html>

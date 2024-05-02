@@ -38,10 +38,22 @@ addDataButton.addEventListener("click", function (e) {
 });
 addDataButton.click();
 
+function showLoadingAnimation() {
+  document.getElementById("loadingOverlay").style.display = "flex";
+}
+
+function hideLoadingAnimation() {
+  document.getElementById("loadingOverlay").style.display = "none";
+}
+
+hideLoadingAnimation();
+
 const submitButton = document.getElementById("submitButton");
 
 submitButton.addEventListener("click", function (event) {
   event.preventDefault();
+
+  showLoadingAnimation();
 
   // retrieve all the inputs from dataContainer
   const titles = document.querySelectorAll(".input-text");
@@ -66,6 +78,8 @@ submitButton.addEventListener("click", function (event) {
   })
     .then((response) => response.text())
     .then((responseData) => {
+      hideLoadingAnimation();
+
       // Handle response
       const percentages = Object.values(JSON.parse(responseData));
 
@@ -81,47 +95,49 @@ submitButton.addEventListener("click", function (event) {
 
       document.getElementById("section2").style.visibility = "visible";
 
-      var ctx = document.getElementById("bar-chart").getContext("2d");
-      var myChart = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: [
-            "Cluster 1",
-            "Cluster 2",
-            "Cluster 3",
-            "Cluster 4",
-            "Cluster 5",
-          ],
-          datasets: [
-            {
-              label: "Percentages",
-              data: percentagesArray,
-              backgroundColor: [
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-              ],
-              borderColor: [
-                "rgba(54, 162, 235, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(54, 162, 235, 1)",
-              ],
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
+      showLoadingAnimation();
+
+      // var ctx = document.getElementById("bar-chart").getContext("2d");
+      // var myChart = new Chart(ctx, {
+      //   type: "bar",
+      //   data: {
+      //     labels: [
+      //       "Cluster 1",
+      //       "Cluster 2",
+      //       "Cluster 3",
+      //       "Cluster 4",
+      //       "Cluster 5",
+      //     ],
+      //     datasets: [
+      //       {
+      //         label: "Percentages",
+      //         data: percentagesArray,
+      //         backgroundColor: [
+      //           "rgba(54, 162, 235, 0.2)",
+      //           "rgba(54, 162, 235, 0.2)",
+      //           "rgba(54, 162, 235, 0.2)",
+      //           "rgba(54, 162, 235, 0.2)",
+      //           "rgba(54, 162, 235, 0.2)",
+      //         ],
+      //         borderColor: [
+      //           "rgba(54, 162, 235, 1)",
+      //           "rgba(54, 162, 235, 1)",
+      //           "rgba(54, 162, 235, 1)",
+      //           "rgba(54, 162, 235, 1)",
+      //           "rgba(54, 162, 235, 1)",
+      //         ],
+      //         borderWidth: 1,
+      //       },
+      //     ],
+      //   },
+      //   options: {
+      //     scales: {
+      //       y: {
+      //         beginAtZero: true,
+      //       },
+      //     },
+      //   },
+      // });
     })
     .catch((error) => {
       // Handle error
@@ -138,6 +154,8 @@ submitButton.addEventListener("click", function (event) {
   })
     .then((response) => response.text())
     .then((responseData) => {
+      hideLoadingAnimation();
+
       // Handle response
       let curriculaArray = JSON.parse(responseData);
 
@@ -148,7 +166,8 @@ submitButton.addEventListener("click", function (event) {
 
       document.getElementById("section3").style.visibility = "visible";
 
-      const old_curriculum_div = document.getElementById("old-curriculum");
+      const old_curriculum_div = document.getElementById("old-curriculum-data");
+      old_curriculum_div.innerHTML = "";
       curriculaArray["old"].forEach((item) => {
         const div = document.createElement("div");
         const titleElement = document.createElement("h4");
@@ -163,7 +182,8 @@ submitButton.addEventListener("click", function (event) {
         old_curriculum_div.appendChild(div);
       });
 
-      const new_curriculum_div = document.getElementById("new-curriculum");
+      const new_curriculum_div = document.getElementById("new-curriculum-data");
+      new_curriculum_div.innerHTML = "";
       curriculaArray["new"].forEach((item) => {
         const div = document.createElement("div");
         const titleElement = document.createElement("h4");
@@ -177,25 +197,6 @@ submitButton.addEventListener("click", function (event) {
 
         new_curriculum_div.appendChild(div);
       });
-    })
-    .catch((error) => {
-      // Handle error
-      console.error(erro0r);
-    });
-
-  // Make POST request
-  fetch("/getClusters", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  })
-    .then((response) => response.text())
-    .then((responseData) => {
-      // Handle response
-      let clustersArray = JSON.parse(responseData);
-      
     })
     .catch((error) => {
       // Handle error
